@@ -5,13 +5,9 @@ import (
 	"encoding/hex"
 )
 
-func Shorten(originalUrl string) map[string]string {
+func Shorten(originalUrl string) string {
 	h := sha256.New()
 	h.Write([]byte(originalUrl))
 	hash := hex.EncodeToString(h.Sum(nil))
-	shortURL := hash[:8]
-	data := map[string]string{
-		"ShortURL": shortURL,
-	}
-	return data
+	return hash[:8]
 }
